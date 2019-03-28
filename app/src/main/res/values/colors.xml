@@ -3,4 +3,28 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorActivityBG">#F5F5F5</color>
+
+
+    <color name="gradientStartColor">#3A57E2</color>
+    <color name="gradientEndColor">#5F7FF1</color>
+
+
+    <color name="colorTextTitle">#000000</color>
+    <color name="colorTextTitleHint">#9AA0AC</color>
+    <color name="colorIcon">#9AA0AC</color>
+
+
+    <!-- MainActivity -->
+    <color name="colorCircleOne">#78C3BD</color>
+    <color name="colorCircleTwo">#EDBA31</color>
+    <color name="colorCircleThree">#4262CE</color>
+    <color name="colorCircleFour">#94BF41</color>
+
+
 </resources>
