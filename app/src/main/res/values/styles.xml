@@ -19,4 +19,16 @@
         <!--<item name="android:windowTranslucentNavigation">true</item>-->
     </style>
 
+    <style name="TextViewTitle">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
+    </style>
+
+    <style name="TextViewTitleHint">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/colorTextTitleHint</item>
+    </style>
+
 </resources>

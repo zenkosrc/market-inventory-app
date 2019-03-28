@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Market Inventory</string>
+
+    <!-- MainActivity -->
+    <string name="hint_title_in_button_add">Додати</string>
+    <string name="hint_title_in_button_create">Створити</string>
+    <string name="title_button_add_properties">Опис продукту</string>
+    <string name="title_button_add_product">Новий продукт</string>
+    <string name="title_button_new_inventory">Звіт</string>
+
+    <string name="title_product_count">Кількість продуктів</string>
+    <string name="title_last_report">Останній звіт</string>
+
 </resources>

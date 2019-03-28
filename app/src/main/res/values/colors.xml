@@ -15,7 +15,8 @@
     <color name="gradientEndColor">#5F7FF1</color>
 
 
-    <color name="colorTextHint">#9AA0AC</color>
+    <color name="colorTextTitle">#000000</color>
+    <color name="colorTextTitleHint">#9AA0AC</color>
     <color name="colorIcon">#9AA0AC</color>
 
 

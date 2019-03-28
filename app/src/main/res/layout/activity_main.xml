@@ -54,14 +54,12 @@
                 android:layout_weight="0.5">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:gravity="bottom"
+                    android:gravity="bottom|center"
                     android:text="@string/app_name"
-                    android:fontFamily="sans-serif-medium"
-                    android:textSize="18sp"/>
+                    style="@style/TextViewTitle"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -69,8 +67,8 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:gravity="top"
-                    android:text="@string/app_name"
-                    android:fontFamily="sans-serif-light"/>
+                    android:text="@string/title_product_count"
+                    style="@style/TextViewTitleHint"/>
             </LinearLayout>
 
             <LinearLayout
@@ -80,14 +78,12 @@
                 android:layout_weight="0.5">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
-                    android:gravity="bottom"
+                    android:gravity="bottom|center"
                     android:text="@string/app_name"
-                    android:textSize="18sp"
-                    android:fontFamily="sans-serif-medium"/>
+                    style="@style/TextViewTitle"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,8 +91,8 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"
                     android:gravity="top"
-                    android:text="@string/app_name"
-                    android:fontFamily="sans-serif-light"/>
+                    android:text="@string/title_last_report"
+                    style="@style/TextViewTitleHint"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -124,7 +120,7 @@
                     android:layout_centerVertical="true"
                     android:background="@drawable/circle_border_one"
                     android:adjustViewBounds="true"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/ic_icon_add_properties" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -139,16 +135,17 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="bottom"
-                        android:text="@string/app_name"/>
+                        android:text="@string/title_button_add_properties"
+                        style="@style/TextViewTitle"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="top"
-                        android:text="@string/app_name"/>
+                        android:text="@string/hint_title_in_button_add"
+                        style="@style/TextViewTitleHint"/>
                 </LinearLayout>
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -170,7 +167,7 @@
                     android:layout_centerVertical="true"
                     android:background="@drawable/circle_border_two"
                     android:adjustViewBounds="true"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/ic_icon_add_product" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -185,16 +182,17 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="bottom"
-                        android:text="@string/app_name"/>
+                        android:text="@string/title_button_add_product"
+                        style="@style/TextViewTitle"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="top"
-                        android:text="@string/app_name"/>
+                        android:text="@string/hint_title_in_button_add"
+                        style="@style/TextViewTitleHint"/>
                 </LinearLayout>
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -231,16 +229,17 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="bottom"
-                        android:text="@string/app_name"/>
+                        android:text="@string/title_button_new_inventory"
+                        style="@style/TextViewTitle"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="top"
-                        android:text="@string/app_name"/>
+                        android:text="@string/hint_title_in_button_create"
+                        style="@style/TextViewTitleHint"/>
                 </LinearLayout>
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -277,20 +276,18 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="bottom"
-                        android:text="@string/app_name"/>
+                        android:text="@string/app_name"
+                        style="@style/TextViewTitle"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
                         android:gravity="top"
-                        android:text="@string/app_name"/>
+                        android:text="@string/app_name"
+                        style="@style/TextViewTitleHint"/>
                 </LinearLayout>
-
             </RelativeLayout>
-
         </LinearLayout>
-
     </LinearLayout>
-
 </RelativeLayout>
