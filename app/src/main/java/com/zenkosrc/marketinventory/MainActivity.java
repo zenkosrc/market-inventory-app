@@ -52,13 +52,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.addPropertiesButton:
-                Log.d(TAG, "addPropertiesButton");
+
+                openAddNewProductFragment();
+
                 break;
 
             case R.id.addProductButton:
 
                 addTestProduct();
-                Log.d(TAG, "addProductButton");
                 break;
         }
     }
@@ -74,5 +75,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         DataBaseManager.getInstance(this).saveProductInDataBase(test);
 
         refreshProductCount();
+    }
+
+    public void openAddNewProductFragment() {
+        NewProductFragment fragment = new NewProductFragment();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_up, R.anim.slide_in_down)
+                .add(android.R.id.content, fragment)
+                .commit();
     }
 }

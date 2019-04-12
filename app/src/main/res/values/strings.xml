@@ -11,4 +11,18 @@
     <string name="title_product_count">Кількість продуктів</string>
     <string name="title_last_report">Останній звіт</string>
 
+    <!-- NewProductFragment -->
+    <string name="title_add_new_product">Новий продукт</string>
+    <string name="hint_bar_code"><font size="16">Bar Code</font></string>
+    <string name="hint_product_name"><font size="16">Назва продукту</font></string>
+    <string name="hint_product_description"><font size="16">Опис продукту</font></string>
+    <string name="title_group_name">Група</string>
+    <string name="title_quantity_name">Вимір</string>
+    <string name="title_button_add">Додати</string>
+
+
+
+    <!--<string name="hint_product_description"><font size="16">Опис продукту</font></string>-->
+
+
 </resources>

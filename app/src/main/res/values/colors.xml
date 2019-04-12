@@ -26,5 +26,8 @@
     <color name="colorCircleThree">#4262CE</color>
     <color name="colorCircleFour">#94BF41</color>
 
+    <!-- NewProductFragment -->
+    <color name="colorFragmentBG">#F2F5F5F5</color>
+    <color name="colorRoundCorberButton">@color/gradientStartColor</color>
 
 </resources>

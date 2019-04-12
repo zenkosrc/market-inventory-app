@@ -8,11 +8,10 @@
     <!-- for Button -->
     <item>
         <shape xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="rectangle"
-            android:padding="5dp">
+            android:shape="rectangle">
 
             <solid
-                android:color="@color/colorWhite"/>
+                android:color="@color/colorRoundCorberButton"/>
             <corners
                 android:radius="12dp"/>
 

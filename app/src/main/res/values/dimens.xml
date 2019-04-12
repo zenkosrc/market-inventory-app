@@ -5,13 +5,22 @@
     <dimen name="main_head_height">125dp</dimen>
     <dimen name="main_root_view_height">100dp</dimen>
 
+    <dimen name="padding_botton_text">5dp</dimen>
+
+    <dimen name="botton_elevation">1dp</dimen>
+
+    <!-- Default margin -->
+    <dimen name="margin_round">20dp</dimen>
+    <dimen name="margin_botton_top">20dp</dimen>
     <dimen name="margin_botton_left">20dp</dimen>
     <dimen name="margin_botton_right">20dp</dimen>
     <dimen name="margin_botton_bottom">20dp</dimen>
 
-    <dimen name="padding_botton_text">5dp</dimen>
+    <dimen name="padding_botton_top">20dp</dimen>
+    <dimen name="padding_botton_left">20dp</dimen>
+    <dimen name="padding_botton_right">20dp</dimen>
+    <dimen name="padding_botton_bottom">20dp</dimen>
 
-    <dimen name="botton_elevation">1dp</dimen>
 
 
 
