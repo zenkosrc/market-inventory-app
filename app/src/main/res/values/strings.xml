@@ -20,6 +20,9 @@
     <string name="title_quantity_name">Вимір</string>
     <string name="title_button_add">Додати</string>
 
+    <string name="toast_is_empty_product_barcode">Введіть BarCode</string>
+    <string name="toast_is_empty_product_name">Введіть назву продукту</string>
+
 
 
     <!--<string name="hint_product_description"><font size="16">Опис продукту</font></string>-->

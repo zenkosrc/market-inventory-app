@@ -53,29 +53,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.addPropertiesButton:
 
-                openAddNewProductFragment();
-
                 break;
 
             case R.id.addProductButton:
 
-                addTestProduct();
+                openAddNewProductFragment();
                 break;
         }
     }
 
-    private void addTestProduct(){
-        Product test = new Product();
-        test.setBarcode("123hj1h4v243h5v234h5vj324");
-        test.setName("Apple");
-        test.setQuantity("KG");
-        test.setGroup("Fruit");
-        test.setDescription("Fresh apples");
-        test.setTime(System.currentTimeMillis());
-        DataBaseManager.getInstance(this).saveProductInDataBase(test);
 
-        refreshProductCount();
-    }
 
     public void openAddNewProductFragment() {
         NewProductFragment fragment = new NewProductFragment();

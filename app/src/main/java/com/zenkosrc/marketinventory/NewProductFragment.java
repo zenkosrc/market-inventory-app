@@ -11,8 +11,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
-public class NewProductFragment extends Fragment {
+import com.zenkosrc.marketinventory.database.Product;
+import com.zenkosrc.marketinventory.managers.DataBaseManager;
+import com.zenkosrc.marketinventory.util.TextUtils;
+
+public class NewProductFragment extends Fragment implements View.OnClickListener {
 
     private View view;
 
@@ -45,15 +50,10 @@ public class NewProductFragment extends Fragment {
         productGroupEditText        = (EditText) view.findViewById(R.id.productGroupEditText);
         productQuantityEditText     = (EditText) view.findViewById(R.id.productQuantityEditText);
         productDescriptionEditText  = (EditText) view.findViewById(R.id.productDescriptionEditText);
+        closeImageView              = (ImageView) view.findViewById(R.id.closeImageView);
 
-        closeImageView = (ImageView) view.findViewById(R.id.closeImageView);
-        closeImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                closeFragmentAnimation();
-            }
-        });
+        closeImageView.setOnClickListener(this);
+        addButtonLinearLayout.setOnClickListener(this);
     }
 
     private void closeFragmentAnimation() {
@@ -67,5 +67,54 @@ public class NewProductFragment extends Fragment {
 
         Animation animFadeIn = AnimationUtils.loadAnimation(getContext(), R.anim.fade_in);
         rootLinearLayout.startAnimation(animFadeIn);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.closeImageView:
+
+                closeFragmentAnimation();
+                break;
+
+            case R.id.addButtonLinearLayout:
+
+                if (!isFieldsEmpty()){
+                    addNewProduct(getCurentProduct());
+                    closeFragmentAnimation();
+                }
+                break;
+        }
+    }
+
+    private void addNewProduct(Product product){
+        DataBaseManager.getInstance(getContext()).saveProductInDataBase(product);
+    }
+
+    private Product getCurentProduct(){
+
+        Product curentProduct = new Product();
+        curentProduct.setBarcode(barCodeEditText.getText().toString());
+        curentProduct.setName(productNameEditText.getText().toString());
+        curentProduct.setGroup(productGroupEditText.getText().toString());
+        curentProduct.setQuantity(productQuantityEditText.getText().toString());
+        curentProduct.setDescription(productDescriptionEditText.getText().toString());
+        curentProduct.setTime(System.currentTimeMillis());
+        return curentProduct;
+    }
+
+    private boolean isFieldsEmpty(){
+
+        if(TextUtils.isEmpty(barCodeEditText)) {
+            Toast.makeText(getContext(), getContext().getResources().getString(R.string.toast_is_empty_product_barcode), Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        if(TextUtils.isEmpty(productNameEditText)) {
+            Toast.makeText(getContext(), getContext().getResources().getString(R.string.toast_is_empty_product_name), Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return false;
     }
 }
