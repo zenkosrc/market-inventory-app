@@ -61,6 +61,7 @@
                 android:hint="@string/hint_bar_code"
                 android:maxLines="1"
                 android:inputType="text"
+                android:drawableRight="@mipmap/ic_action_barcode"
                 android:background="@drawable/circle_border"/>
 
             <EditText

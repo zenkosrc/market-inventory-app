@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.zenkosrc.marketinventory.database.Product;
 import com.zenkosrc.marketinventory.managers.DataBaseManager;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -61,8 +60,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-
-
 
     public void openAddNewProductFragment() {
         NewProductFragment fragment = new NewProductFragment();

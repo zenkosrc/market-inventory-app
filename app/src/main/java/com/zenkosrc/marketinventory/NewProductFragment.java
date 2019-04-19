@@ -3,7 +3,9 @@ package com.zenkosrc.marketinventory;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -13,14 +15,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.edwardvanraak.materialbarcodescanner.MaterialBarcodeScanner;
+import com.edwardvanraak.materialbarcodescanner.MaterialBarcodeScannerBuilder;
+import com.google.android.gms.vision.barcode.Barcode;
 import com.zenkosrc.marketinventory.database.Product;
 import com.zenkosrc.marketinventory.managers.DataBaseManager;
 import com.zenkosrc.marketinventory.util.TextUtils;
 
 public class NewProductFragment extends Fragment implements View.OnClickListener {
 
-    private View view;
+    private static final String TAG = NewProductFragment.class.getSimpleName();
 
+    private View            view;
     private ImageView       closeImageView;
     private EditText        barCodeEditText;
     private EditText        productNameEditText;
@@ -54,6 +60,7 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
 
         closeImageView.setOnClickListener(this);
         addButtonLinearLayout.setOnClickListener(this);
+        barCodeEditText.setOnTouchListener(new EditTextIconClickListener());
     }
 
     private void closeFragmentAnimation() {
@@ -116,5 +123,48 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
         }
 
         return false;
+    }
+
+    private void startScan() {
+        final MaterialBarcodeScanner materialBarcodeScanner = new MaterialBarcodeScannerBuilder()
+                .withActivity(getActivity())
+                .withEnableAutoFocus(true)
+                .withBleepEnabled(false)
+                .withBackfacingCamera()
+                .withText("Scanning...")
+                .withCenterTracker ()
+                .withResultListener(new MaterialBarcodeScanner.OnResultListener() {
+                    @Override
+                    public void onResult(Barcode barcode) {
+
+                        Log.i(TAG, "Scanned product " + barcode.rawValue);
+
+                        barCodeEditText.setText(barcode.rawValue);
+                    }
+                })
+                .build();
+        materialBarcodeScanner.startScan();
+    }
+
+    private class EditTextIconClickListener implements View.OnTouchListener {
+
+        final int DRAWABLE_LEFT = 0;
+        final int DRAWABLE_TOP = 1;
+        final int DRAWABLE_RIGHT = 2;
+        final int DRAWABLE_BOTTOM = 3;
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+
+            if(event.getAction() == MotionEvent.ACTION_UP) {
+                if(event.getRawX() >= (barCodeEditText.getRight() - barCodeEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+
+                    startScan();
+
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
