@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:orientation="vertical"
+        android:elevation="@dimen/botton_elevation"
+        android:paddingLeft="@dimen/padding_left_item"
+        android:paddingRight="@dimen/padding_right_item"
+        android:layout_marginTop="@dimen/margin_top_item"
+        android:layout_marginBottom="@dimen/margin_bottom_item"
+        android:layout_marginLeft="@dimen/margin_botton_left"
+        android:layout_marginRight="@dimen/margin_botton_right">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_action_barcode"/>
+
+            <TextView
+                android:id="@+id/barCodeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="barcode"
+                android:layout_marginLeft="@dimen/margin_left_item"
+                android:layout_marginRight="@dimen/margin_right_item"
+                style="@style/TextViewTitleHint"/>
+
+            <ImageView
+                android:id="@+id/deleteImageView"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/ic_icon_close"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Green Apple"
+            android:layout_marginTop="@dimen/margin_top_item"
+            android:layout_marginBottom="@dimen/margin_bottom_item"
+            style="@style/TextViewTitle"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_group_name"
+                style="@style/TextViewTitleHint"/>
+
+            <TextView
+                android:id="@+id/groupTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Фрукты"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                style="@style/TextViewTitleSmall"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

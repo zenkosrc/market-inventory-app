@@ -1,5 +1,6 @@
 package com.zenkosrc.marketinventory;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView       productCountTextView;
     private RelativeLayout addPropertiesButton;
     private RelativeLayout addProductButton;
+    private RelativeLayout productListButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +40,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         productCountTextView    = (TextView) findViewById(R.id.productCountTextView);
         addPropertiesButton     = (RelativeLayout) findViewById(R.id.addPropertiesButton);
         addProductButton        = (RelativeLayout) findViewById(R.id.addProductButton);
+        productListButton       = (RelativeLayout) findViewById(R.id.productListButton);
 
         addPropertiesButton.setOnClickListener(this);
         addProductButton.setOnClickListener(this);
+        productListButton.setOnClickListener(this);
     }
 
-    private void refreshProductCount() {
-        productCountTextView.setText(Long.toString(DataBaseManager.getInstance(this).getProductCountInDataBase()));
+    public void refreshProductCount() {
+        if (productCountTextView != null) productCountTextView.setText(Long.toString(DataBaseManager.getInstance(this).getProductCountInDataBase()));
     }
 
     @Override
@@ -52,11 +56,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.addPropertiesButton:
 
+
                 break;
 
             case R.id.addProductButton:
 
                 openAddNewProductFragment();
+                break;
+
+            case R.id.productListButton:
+
+                openProductListActivity();
                 break;
         }
     }
@@ -66,5 +76,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_up, R.anim.slide_in_down)
                 .add(android.R.id.content, fragment)
                 .commit();
+    }
+
+    public void openProductListActivity() {
+
+        Intent openProductListActivity = new Intent(this, ProductListActivity.class);
+        startActivity(openProductListActivity);
     }
 }

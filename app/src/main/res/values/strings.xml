@@ -4,8 +4,10 @@
     <!-- MainActivity -->
     <string name="hint_title_in_button_add">Додати</string>
     <string name="hint_title_in_button_create">Створити</string>
+    <string name="hint_title_in_button_list">Переглянути</string>
     <string name="title_button_add_properties">Опис продукту</string>
     <string name="title_button_add_product">Новий продукт</string>
+    <string name="title_button_product_list">Список продуктів</string>
     <string name="title_button_new_inventory">Звіт</string>
 
     <string name="title_product_count">Кількість продуктів</string>
@@ -23,6 +25,10 @@
     <string name="toast_is_empty_product_barcode">Введіть BarCode</string>
     <string name="toast_is_empty_product_name">Введіть назву продукту</string>
 
+
+    <string name="dialog_product_delete">Дійсно бажаєте видалити продукт </string>
+    <string name="dialog_product_delete_yes">Так</string>
+    <string name="dialog_product_delete_no">Ні</string>
 
 
     <!--<string name="hint_product_description"><font size="16">Опис продукту</font></string>-->

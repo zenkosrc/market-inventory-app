@@ -68,6 +68,8 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
 
         Animation animFadeOut = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
         rootLinearLayout.startAnimation(animFadeOut);
+
+        ((MainActivity) getActivity()).refreshProductCount();
     }
 
     private void startFragmentAnimation() {

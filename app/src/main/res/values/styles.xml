@@ -31,7 +31,20 @@
         <item name="android:textColor">@color/colorTextTitleHint</item>
     </style>
 
+    <style name="TextViewTitleSmall">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
+    </style>
+
+
     <style name="TextViewLabel">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
+    </style>
+
+    <style name="TextViewLabelHint">
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/colorTextTitleHint</item>

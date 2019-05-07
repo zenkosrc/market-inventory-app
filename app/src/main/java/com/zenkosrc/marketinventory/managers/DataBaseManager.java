@@ -10,6 +10,8 @@ import com.zenkosrc.marketinventory.database.ProductDao;
 
 import org.greenrobot.greendao.database.Database;
 
+import java.util.List;
+
 public class DataBaseManager {
 
     private static final String TAG = DataBaseManager.class.getSimpleName();
@@ -46,5 +48,13 @@ public class DataBaseManager {
 
     public long getProductCountInDataBase(){
         return productDao.count();
+    }
+
+    public List<Product> getProductList(){
+        return productDao.loadAll();
+    }
+
+    public void deleteProduct(Product product){
+        productDao.delete(product);
     }
 }
