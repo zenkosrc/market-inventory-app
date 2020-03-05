@@ -92,11 +92,21 @@
                     android:id="@+id/productGroupEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:singleLine="true"
                     android:textSize="16sp"
                     android:layout_weight="0.35"
                     android:maxLines="1"
-                    android:inputType="text"
+                    android:drawableRight="@mipmap/ic_action_expand"
                     android:background="@drawable/circle_border"/>
+
+                <ImageView
+                    android:id="@+id/editGroupImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_action_edit"/>
 
             </LinearLayout>
 
@@ -117,11 +127,21 @@
                     android:id="@+id/productQuantityEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:singleLine="true"
                     android:textSize="16sp"
                     android:layout_weight="0.35"
                     android:maxLines="1"
-                    android:inputType="text"
+                    android:drawableRight="@mipmap/ic_action_expand"
                     android:background="@drawable/circle_border"/>
+
+                <ImageView
+                    android:id="@+id/editQuantityImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:layout_gravity="center"
+                    android:src="@mipmap/ic_action_edit"/>
 
             </LinearLayout>
 

@@ -31,6 +31,9 @@
     <dimen name="margin_right_item">5dp</dimen>
     <dimen name="margin_bottom_item">5dp</dimen>
 
+    <!-- SpinnerPropertiesAdapter -->
+    <dimen name="padding_item">10dp</dimen>
+
 
 
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.zenkosrc.marketinventory.database.ProductProperties;
 import com.zenkosrc.marketinventory.managers.DataBaseManager;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -56,6 +57,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.addPropertiesButton:
 
+                //TEST BLOCK
+//                ProductProperties test = new ProductProperties();
+//                test.setLabel(ProductProperties.GROUP);
+//                test.setPropertiesName("Молочні продукти");
+//                DataBaseManager.getInstance(getBaseContext()).saveProductPropertiesInDataBase(test);
+//
+//                ProductProperties test2 = new ProductProperties();
+//                test2.setLabel(ProductProperties.QUANTITY);
+//                test2.setPropertiesName("Кг");
+//                DataBaseManager.getInstance(getBaseContext()).saveProductPropertiesInDataBase(test2);
+//
+//                for (ProductProperties curent: DataBaseManager.getInstance(getBaseContext()).getProductPropertiesList()){
+//                    Log.d("AZE", "ID " + curent.getId());
+//                    Log.d("AZE", "getPropertiesName " + curent.getPropertiesName());
+//                    Log.d("AZE", "getLabel " + curent.getLabel());
+//                }
 
                 break;
 

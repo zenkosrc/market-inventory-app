@@ -1,8 +1,11 @@
 package com.zenkosrc.marketinventory;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,14 +22,21 @@ import com.edwardvanraak.materialbarcodescanner.MaterialBarcodeScanner;
 import com.edwardvanraak.materialbarcodescanner.MaterialBarcodeScannerBuilder;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.zenkosrc.marketinventory.database.Product;
+import com.zenkosrc.marketinventory.database.ProductProperties;
 import com.zenkosrc.marketinventory.managers.DataBaseManager;
 import com.zenkosrc.marketinventory.util.TextUtils;
+
+import java.util.List;
+
+import static com.zenkosrc.marketinventory.EditProductPropertiesActivity.EXTRA_PROPERTIES_LABEL;
 
 public class NewProductFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = NewProductFragment.class.getSimpleName();
 
     private View            view;
+    private ImageView       editGroupImageView;
+    private ImageView       editQuantityImageView;
     private ImageView       closeImageView;
     private EditText        barCodeEditText;
     private EditText        productNameEditText;
@@ -51,16 +61,22 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
 
         rootLinearLayout            = (LinearLayout) view.findViewById(R.id.rootLinearLayout);
         addButtonLinearLayout       = (LinearLayout) view.findViewById(R.id.addButtonLinearLayout);
-        barCodeEditText             = (EditText) view.findViewById(R.id.barCodeEditText);
-        productNameEditText         = (EditText) view.findViewById(R.id.productNameEditText);
-        productGroupEditText        = (EditText) view.findViewById(R.id.productGroupEditText);
-        productQuantityEditText     = (EditText) view.findViewById(R.id.productQuantityEditText);
-        productDescriptionEditText  = (EditText) view.findViewById(R.id.productDescriptionEditText);
-        closeImageView              = (ImageView) view.findViewById(R.id.closeImageView);
+        barCodeEditText             = (EditText)     view.findViewById(R.id.barCodeEditText);
+        productNameEditText         = (EditText)     view.findViewById(R.id.productNameEditText);
+        productGroupEditText        = (EditText)     view.findViewById(R.id.productGroupEditText);
+        productQuantityEditText     = (EditText)     view.findViewById(R.id.productQuantityEditText);
+        productDescriptionEditText  = (EditText)     view.findViewById(R.id.productDescriptionEditText);
+        editGroupImageView          = (ImageView)    view.findViewById(R.id.editGroupImageView);
+        editQuantityImageView       = (ImageView)    view.findViewById(R.id.editQuantityImageView);
+        closeImageView              = (ImageView)    view.findViewById(R.id.closeImageView);
 
+        editGroupImageView.setOnClickListener(this);
+        editQuantityImageView.setOnClickListener(this);
         closeImageView.setOnClickListener(this);
         addButtonLinearLayout.setOnClickListener(this);
         barCodeEditText.setOnTouchListener(new EditTextIconClickListener());
+        productGroupEditText.setOnTouchListener(new EditTextIconClickListener());
+        productQuantityEditText.setOnTouchListener(new EditTextIconClickListener());
     }
 
     private void closeFragmentAnimation() {
@@ -92,6 +108,16 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
                     addNewProduct(getCurentProduct());
                     closeFragmentAnimation();
                 }
+                break;
+
+            case R.id.editGroupImageView:
+
+                startEditProperties(ProductProperties.GROUP);
+                break;
+
+            case R.id.editQuantityImageView:
+
+                startEditProperties(ProductProperties.QUANTITY);
                 break;
         }
     }
@@ -158,15 +184,87 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
         @Override
         public boolean onTouch(View v, MotionEvent event) {
 
+
             if(event.getAction() == MotionEvent.ACTION_UP) {
-                if(event.getRawX() >= (barCodeEditText.getRight() - barCodeEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
 
-                    startScan();
+                switch (v.getId()){
+                    case R.id.barCodeEditText:
 
-                    return true;
+                        Log.i(TAG, "barCodeEditText");
+                        if(event.getRawX() >= (barCodeEditText.getRight() - barCodeEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+
+                            startScan();
+                            return true;
+                        }
+                        break;
+
+                    case R.id.productGroupEditText:
+
+                        Log.i(TAG, "productGroupEditText");
+                        if(event.getRawX() >= (productGroupEditText.getRight() - productGroupEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+
+                            showDialogPropertiseList(DataBaseManager.getInstance(getContext()).getProductPropertiesGroupList(), getString(R.string.title_group_name));
+                            return true;
+                        }
+                        break;
+
+                    case R.id.productQuantityEditText:
+
+                        Log.i(TAG, "productGroupEditText");
+                        if(event.getRawX() >= (productQuantityEditText.getRight() - productQuantityEditText.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+
+                            showDialogPropertiseList(DataBaseManager.getInstance(getContext()).getProductPropertiesQuantityList(), getString(R.string.title_quantity_name));
+                            return true;
+                        }
+                        break;
                 }
             }
             return false;
         }
+    }
+
+    private void showDialogPropertiseList (final List<ProductProperties> productPropertiesList, String title){
+
+        String[] namesArray = new String[productPropertiesList.size()];
+
+        for (int i = 0; i < productPropertiesList.size(); i++){
+            namesArray[i] = productPropertiesList.get(i).getPropertiesName();
+        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(title);
+        builder.setItems(namesArray, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int item) {
+
+                setProperties(productPropertiesList.get(item));
+
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    private void setProperties(ProductProperties selectedProductProperties){
+
+        switch (selectedProductProperties.getLabel()){
+            case ProductProperties.GROUP:
+                productGroupEditText.setText(selectedProductProperties.getPropertiesName());
+                break;
+
+            case ProductProperties.QUANTITY:
+                productQuantityEditText.setText(selectedProductProperties.getPropertiesName());
+                break;
+        }
+    }
+
+    private void startEditProperties(int propertiesLabel){
+        Intent intent = new Intent(getContext(), EditProductPropertiesActivity.class);
+
+        if (propertiesLabel == ProductProperties.GROUP){
+            intent.putExtra(EXTRA_PROPERTIES_LABEL, ProductProperties.GROUP);
+        }else {
+            intent.putExtra(EXTRA_PROPERTIES_LABEL, ProductProperties.QUANTITY);
+        }
+        startActivity(intent);
     }
 }
