@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.zenkosrc.marketinventory.database.ProductProperties;
 import com.zenkosrc.marketinventory.managers.DataBaseManager;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -19,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RelativeLayout addPropertiesButton;
     private RelativeLayout addProductButton;
     private RelativeLayout productListButton;
+    private RelativeLayout countingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +42,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         addPropertiesButton     = (RelativeLayout) findViewById(R.id.addPropertiesButton);
         addProductButton        = (RelativeLayout) findViewById(R.id.addProductButton);
         productListButton       = (RelativeLayout) findViewById(R.id.productListButton);
+        countingButton          = (RelativeLayout) findViewById(R.id.countingButton);
 
         addPropertiesButton.setOnClickListener(this);
         addProductButton.setOnClickListener(this);
         productListButton.setOnClickListener(this);
+        countingButton.setOnClickListener(this);
     }
 
     public void refreshProductCount() {
-        if (productCountTextView != null) productCountTextView.setText(Long.toString(DataBaseManager.getInstance(this).getProductCountInDataBase()));
+        if (productCountTextView != null) {
+            productCountTextView.setText(Long.toString(DataBaseManager.getInstance(this).getProductCountInDataBase()));
+        }
     }
 
     @Override
@@ -85,6 +89,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 openProductListActivity();
                 break;
+
+            case R.id.countingButton:
+
+                openCountingActivity();
+                break;
         }
     }
 
@@ -99,5 +108,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent openProductListActivity = new Intent(this, ProductListActivity.class);
         startActivity(openProductListActivity);
+    }
+
+    public void openCountingActivity() {
+
+        Intent openCountingActivity = new Intent(this, CountingActivity.class);
+        startActivity(openCountingActivity);
     }
 }

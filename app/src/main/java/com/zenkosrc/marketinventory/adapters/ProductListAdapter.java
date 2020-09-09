@@ -47,6 +47,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         private TextView    nameTextView;
         private TextView    groupTextView;
         private ImageView   deleteImageView;
+        private ImageView   editImageView;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -55,6 +56,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             nameTextView        = itemView.findViewById(R.id.nameTextView);
             groupTextView       = itemView.findViewById(R.id.groupTextView);
             deleteImageView     = itemView.findViewById(R.id.deleteImageView);
+            editImageView       = itemView.findViewById(R.id.editImageView);
 
 
             deleteImageView.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +64,14 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                 public void onClick(View v) {
 
                     onItemClickListener.onProductDeleteClick(productList.get(getLayoutPosition()));
+                }
+            });
+
+            editImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    onItemClickListener.onProductEditClick(productList.get(getLayoutPosition()));
                 }
             });
 
@@ -81,6 +91,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     public interface OnItemClickListener {
         void onProductDeleteClick(Product product);
+        void onProductEditClick(Product product);
     }
 
 }

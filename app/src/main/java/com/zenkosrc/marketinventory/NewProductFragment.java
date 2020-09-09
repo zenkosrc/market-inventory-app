@@ -45,6 +45,7 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
     private EditText        productDescriptionEditText;
     private LinearLayout    addButtonLinearLayout;
     private LinearLayout    rootLinearLayout;
+    private Product         editProduct;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,9 +53,26 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
         view = inflater.inflate(R.layout.fragment_new_product, container, false);
 
         initResources();
+        initEditData();
         startFragmentAnimation();
 
         return view;
+    }
+
+    private void initEditData() {
+        if (editProduct != null){
+            Log.i(TAG, "Product editing");
+
+            barCodeEditText.setText(editProduct.getBarcode());
+            productNameEditText.setText(editProduct.getName());
+            productGroupEditText.setText(editProduct.getGroup());
+            productQuantityEditText.setText(editProduct.getQuantity());
+            productDescriptionEditText.setText(editProduct.getDescription());
+        }
+    }
+
+    public void setEditProduct(Product editProduct) {
+        this.editProduct = editProduct;
     }
 
     private void initResources() {
@@ -85,7 +103,12 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
         Animation animFadeOut = AnimationUtils.loadAnimation(getContext(), R.anim.fade_out);
         rootLinearLayout.startAnimation(animFadeOut);
 
-        ((MainActivity) getActivity()).refreshProductCount();
+
+        //Refresh product count only when adding a new product
+        if (editProduct == null){
+            ((MainActivity) getActivity()).refreshProductCount();
+        }
+
     }
 
     private void startFragmentAnimation() {
@@ -128,14 +151,25 @@ public class NewProductFragment extends Fragment implements View.OnClickListener
 
     private Product getCurentProduct(){
 
-        Product curentProduct = new Product();
-        curentProduct.setBarcode(barCodeEditText.getText().toString());
-        curentProduct.setName(productNameEditText.getText().toString());
-        curentProduct.setGroup(productGroupEditText.getText().toString());
-        curentProduct.setQuantity(productQuantityEditText.getText().toString());
-        curentProduct.setDescription(productDescriptionEditText.getText().toString());
-        curentProduct.setTime(System.currentTimeMillis());
-        return curentProduct;
+        if (editProduct != null){
+
+            editProduct.setBarcode(barCodeEditText.getText().toString());
+            editProduct.setName(productNameEditText.getText().toString());
+            editProduct.setGroup(productGroupEditText.getText().toString());
+            editProduct.setQuantity(productQuantityEditText.getText().toString());
+            editProduct.setDescription(productDescriptionEditText.getText().toString());
+            return editProduct;
+        }else {
+
+            Product curentProduct = new Product();
+            curentProduct.setBarcode(barCodeEditText.getText().toString());
+            curentProduct.setName(productNameEditText.getText().toString());
+            curentProduct.setGroup(productGroupEditText.getText().toString());
+            curentProduct.setQuantity(productQuantityEditText.getText().toString());
+            curentProduct.setDescription(productDescriptionEditText.getText().toString());
+            curentProduct.setTime(System.currentTimeMillis());
+            return curentProduct;
+        }
     }
 
     private boolean isFieldsEmpty(){

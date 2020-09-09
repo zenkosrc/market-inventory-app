@@ -34,6 +34,7 @@
     <string name="dialog_product_group_new">Група</string>
     <string name="dialog_product_properties_new">Додати</string>
     <string name="dialog_product_properties_name">Назва</string>
+    <string name="title_activity_counting">CountingActivity</string>
 
 
     <!--<string name="hint_product_description"><font size="16">Опис продукту</font></string>-->

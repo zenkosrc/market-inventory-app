@@ -55,4 +55,18 @@ public class ProductListActivity extends AppCompatActivity implements ProductLis
                         dialog.dismiss();
                     }});
     }
+
+    @Override
+    public void onProductEditClick(Product product) {
+        openEditProductFragment(product);
+    }
+
+    public void openEditProductFragment(Product product) {
+        NewProductFragment fragment = new NewProductFragment();
+        fragment.setEditProduct(product);
+
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_up, R.anim.slide_in_down)
+                .add(android.R.id.content, fragment)
+                .commit();
+    }
 }
