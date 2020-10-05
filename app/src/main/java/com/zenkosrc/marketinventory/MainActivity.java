@@ -9,12 +9,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zenkosrc.marketinventory.managers.DataBaseManager;
+import com.zenkosrc.marketinventory.util.TimeUtil;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private TextView       productCountTextView;
+    private TextView       lastInventoryTextView;
     private RelativeLayout addPropertiesButton;
     private RelativeLayout addProductButton;
     private RelativeLayout productListButton;
@@ -38,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initResources() {
 
-        productCountTextView    = (TextView) findViewById(R.id.productCountTextView);
+        productCountTextView    = (TextView)       findViewById(R.id.productCountTextView);
+        lastInventoryTextView    = (TextView)      findViewById(R.id.lastInventoryTextView);
         addPropertiesButton     = (RelativeLayout) findViewById(R.id.addPropertiesButton);
         addProductButton        = (RelativeLayout) findViewById(R.id.addProductButton);
         productListButton       = (RelativeLayout) findViewById(R.id.productListButton);
@@ -53,6 +56,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void refreshProductCount() {
         if (productCountTextView != null) {
             productCountTextView.setText(Long.toString(DataBaseManager.getInstance(this).getProductCountInDataBase()));
+        }
+
+        if (lastInventoryTextView != null) {
+            lastInventoryTextView.setText(TimeUtil.getDateFromMilliseconds(DataBaseManager.getInstance(this).getLastInvThreadInDataBase()));
         }
     }
 
@@ -112,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void openCountingActivity() {
 
-        Intent openCountingActivity = new Intent(this, CountingActivity.class);
+        Intent openCountingActivity = new Intent(this, CountingListActivity.class);
         startActivity(openCountingActivity);
     }
 }

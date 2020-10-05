@@ -26,7 +26,7 @@
     <string name="toast_is_empty_product_name">Введіть назву продукту</string>
 
 
-    <string name="dialog_product_delete">Дійсно бажаєте видалити продукт \u0020</string>
+    <string name="dialog_product_delete">Бажаєте видалити продукт?</string>
     <string name="dialog_product_delete_yes">Так</string>
     <string name="dialog_product_delete_no">Ні</string>
 
@@ -35,6 +35,9 @@
     <string name="dialog_product_properties_new">Додати</string>
     <string name="dialog_product_properties_name">Назва</string>
     <string name="title_activity_counting">CountingActivity</string>
+
+    <!-- CountingListActivity -->
+    <string name="dialog_inv_thread_delete">Бажаєте видалити інвентарізацію?</string>
 
 
     <!--<string name="hint_product_description"><font size="16">Опис продукту</font></string>-->

@@ -1,17 +1,16 @@
 package com.zenkosrc.marketinventory;
 
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
+import android.os.Bundle;
+import android.util.Log;
 
 public class CountingActivity extends AppCompatActivity {
 
+    private static final String TAG = CountingActivity.class.getSimpleName();
 
-    Dialog myDialog;
+    public static String THREAD_ID = "ThreadId";
+
+    private long threadId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,23 +18,13 @@ public class CountingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_counting);
 
 
-        showPopup();
-
+        initThread();
+        Log.d(TAG, "Thread ID " + threadId);
     }
 
-
-    public void showPopup() {
-
-        myDialog = new Dialog(this);
-
-
-        ((ViewGroup)myDialog.getWindow().getDecorView())
-                .getChildAt(0).startAnimation(AnimationUtils.loadAnimation(
-                this, R.anim.slide_in_up));
-
-        myDialog.setContentView(R.layout.test);
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.show();
+    private void initThread() {
+        if (getIntent() !=null){
+            threadId = getIntent().getLongExtra(THREAD_ID, 0);
+        }
     }
-
 }

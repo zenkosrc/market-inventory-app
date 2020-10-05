@@ -5,10 +5,13 @@ import android.util.Log;
 
 import com.zenkosrc.marketinventory.database.DaoMaster;
 import com.zenkosrc.marketinventory.database.DaoSession;
+import com.zenkosrc.marketinventory.database.InvThread;
+import com.zenkosrc.marketinventory.database.InvThreadDao;
 import com.zenkosrc.marketinventory.database.Product;
 import com.zenkosrc.marketinventory.database.ProductDao;
 import com.zenkosrc.marketinventory.database.ProductProperties;
 import com.zenkosrc.marketinventory.database.ProductPropertiesDao;
+import com.zenkosrc.marketinventory.util.TimeUtil;
 
 import org.greenrobot.greendao.database.Database;
 
@@ -23,6 +26,7 @@ public class DataBaseManager {
     private        Context              context;
     private        ProductDao           productDao;
     private        ProductPropertiesDao productPropertiesDao;
+    private        InvThreadDao         invThreadDao;
 
     public DataBaseManager(Context context) {
         this.context = context;
@@ -32,6 +36,7 @@ public class DataBaseManager {
 
         productDao           = daoSession.getProductDao();
         productPropertiesDao = daoSession.getProductPropertiesDao();
+        invThreadDao         = daoSession.getInvThreadDao();
     }
 
     //Singleton
@@ -128,11 +133,46 @@ public class DataBaseManager {
         productPropertiesDao.delete(productProperties);
     }
 
+    public void deleteInvThread(InvThread thread){
+        invThreadDao.delete(thread);
+    }
+
     public void incrementUsageProductPropeties(ProductProperties productProperties){
         int usageCount = productProperties.getUsageCount();
         productProperties.setUsageCount(usageCount+1);
         saveProductPropertiesInDataBase(productProperties);
 
         Log.d(TAG, "Count of products Group: " + productProperties.getUsageCount());
+    }
+
+    public long createNewThreadInDataBase(){
+
+        long curentTime = System.currentTimeMillis();
+
+        InvThread newThread = new InvThread();
+        newThread.setName(TimeUtil.getTimeFromMilliseconds(curentTime));
+        newThread.setTime(curentTime);
+
+        //Insert to DB
+        return invThreadDao.insert(newThread);
+    }
+
+    //Sort By Add Time 99 to 1
+    public List<InvThread> getInvThreadsListSortByLast(){
+        return invThreadDao.queryBuilder()
+                .orderDesc(InvThreadDao.Properties.Time)
+                .list();
+    }
+
+
+    //Return last inventory time
+    public long getLastInvThreadInDataBase(){
+        return invThreadDao.queryBuilder()
+                .orderDesc(InvThreadDao.Properties.Time)
+                .list().get(0).getTime();
+    }
+
+    public long getInvThreadCountInDataBase(){
+        return invThreadDao.count();
     }
 }

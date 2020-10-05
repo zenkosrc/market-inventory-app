@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CountingActivity"></activity>
         <activity
-            android:name=".CountingActivity"
+            android:name=".CountingListActivity"
             android:label="@string/title_activity_counting"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EditProductPropertiesActivity" />
         <activity android:name=".ProductListActivity" />
         <activity android:name=".MainActivity">
